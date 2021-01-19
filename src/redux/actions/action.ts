@@ -1,52 +1,32 @@
-// import { FETCH_USERS_PENDING, FETCH_USERS_SUCCESS, FETCH_USERS_ERROR } from './../types/types'
+import { FETCH_USERS_PENDING, FETCH_USERS_SUCCESS, FETCH_USERS_ERROR } from './../types/types'
 
-// function fetchUsersPending() {
-//     return {
-//         type: FETCH_USERS_PENDING
-//     }
-// }
-
-// function fetchUsersSuccess(Users: any) {
-//     return {
-//         type: FETCH_USERS_SUCCESS,
-//         Users: Users
-//     }
-// }
-
-// function fetchUsersError(error: any) {
-//     return {
-//         type: FETCH_USERS_ERROR,
-//         error: error
-//     }
-// }
-export const FETCH_PRODUCTS_PENDING = 'FETCH_PRODUCTS_PENDING';
-export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
-export const FETCH_PRODUCTS_ERROR = 'FETCH_PRODUCTS_ERROR';
-
-function fetchProductsPending() {
+function fetchUsersPending() {
     return {
-        type: FETCH_PRODUCTS_PENDING
+        type: FETCH_USERS_PENDING
     }
 }
 
-function fetchProductsSuccess(products: any) {
+function fetchUsersSuccess(Users: any) {
     return {
-        type: FETCH_PRODUCTS_SUCCESS,
-        payload: products
+        type: FETCH_USERS_SUCCESS,
+        payload: Users
     }
 }
 
-function fetchProductsError(error: any) {
+function fetchUsersError(error: any) {
     return {
-        type: FETCH_PRODUCTS_ERROR,
+        type: FETCH_USERS_ERROR,
         error
     }
 }
 
 
+
+
+
 function fetchProducts() {
     return (dispatch: (arg0: { type: string; products?: any; error?: any; }) => void) => {
-        dispatch(fetchProductsPending());
+        dispatch(fetchUsersPending());
         // fetch('https://api.github.com/users/mojombo')
         fetch('https://api.github.com/users?q=sanm')
 
@@ -56,11 +36,11 @@ function fetchProducts() {
                 if (res.error) {
                     throw (res.error);
                 }
-                dispatch(fetchProductsSuccess(res));
+                dispatch(fetchUsersSuccess(res));
                 return res;
             })
             .catch(error => {
-                dispatch(fetchProductsError(error));
+                dispatch(fetchUsersError(error));
             })
     }
 }
