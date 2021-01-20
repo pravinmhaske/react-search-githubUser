@@ -5,13 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import GitApp from './containers/GitApp';
 
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <GitApp />
+      <App />
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')

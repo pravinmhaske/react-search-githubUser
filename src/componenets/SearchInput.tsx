@@ -6,8 +6,8 @@ function SearchInput(props: { onSearchValChanged: (arg0: string) => void; }) {
     const onInputChange = (event: { target: { value: any; }; }) => {
         setInputText(event?.target?.value);
         console.log("event.target.value ", event.target.value);
-        if (inputText.length > 1) {
-            props.onSearchValChanged(inputText);
+        if (event?.target?.value.length > 1) {
+            props.onSearchValChanged(event?.target?.value);
         }
     }
     return (

@@ -31,5 +31,5 @@ export function usersReducer(state = initialState, action: { type: any; payload:
 }
 
 export const getUsers = (state: { user: { users: any; }; }) => state.user.users;
-export const getUsersPending = (state: { pending: any; }) => state.pending;
-export const getUsersError = (state: { error: any; }) => state.error;
+export const getUsersPending = (state: { user: { pending: any; }; }) => state.user.pending;
+export const getUsersError = (state: { user: { error: any; }; }) => state.user.error;
