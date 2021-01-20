@@ -1,4 +1,5 @@
-import { FETCH_USERS_PENDING, FETCH_USERS_SUCCESS, FETCH_USERS_ERROR } from './../types/types'
+import { FETCH_USERS_PENDING, FETCH_USERS_SUCCESS, FETCH_USERS_ERROR } from './../types/types';
+import { app_url_users } from './../../constants/constant'
 
 function fetchUsersPending() {
     return {
@@ -19,10 +20,6 @@ function fetchUsersError(error: any) {
         error
     }
 }
-
-
-
-
 
 function fetchProducts() {
     return (dispatch: (arg0: { type: string; products?: any; error?: any; }) => void) => {
