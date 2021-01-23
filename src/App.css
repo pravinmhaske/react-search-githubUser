@@ -12,7 +12,7 @@ input, textarea, select, fieldset {
 }
 
 input, select, textarea {
-  background: transparent none repeat scroll 0 0;
+  /* background: transparent none repeat scroll 0 0; */
   font-size: 1em;
   line-height: 1.42;
   padding: 8px 10px;
@@ -49,8 +49,42 @@ input[type="text"], input[type="search"], input[type="password"], input[type="em
   width: 100%;
 }
 
-._select{
-  max-width:50%;
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 10%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+.image{
+  width: 100%;
+  
+}
+
+/* header  content css */
+
+.flexContainer{
+display: flex;
+/* flex-direction: ; */
+}
+
+
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.child {
+  flex: 1 0 27%;
+  margin: 15px;
+  /* background-color: blue; */
 }
 
 

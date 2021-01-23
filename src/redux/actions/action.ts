@@ -25,9 +25,7 @@ function fetchProducts(searchVal: string, isUserSelected: boolean) {
     return (dispatch: (arg0: { type: string; products?: any; error?: any; }) => void) => {
         dispatch(fetchUsersPending());
         const urlChunk = isUserSelected ? USR_URL : REPO_URL;
-        // fetch('https://api.github.com/users/mojombo')
         fetch(`${APP_URL}${urlChunk}${searchVal}`)
-            // https://api.github.com/search/users?q=pravinmhaske
             .then(res => res.json())
             .then(res => {
                 console.log("resrrr ", res)
