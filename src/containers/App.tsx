@@ -5,12 +5,11 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import fetchProducts from '../redux/actions/action';
 import { getResponse, getUsersError, getUsersPending } from '../redux/reducers/user.reducer';
-import SearchInput from '../componenets/SearchInput';
-import SearchType from '../componenets/SearchType';
+import SearchInput from './SearchInput';
+import SearchType from './SearchType';
 import styled from 'styled-components';
 import './App.scss';
-import ErrorBoundary from '../componenets/ErrorBoundary';
-import User from '../componenets/User';
+import ErrorBoundary from './ErrorBoundary';
 import UserList from '../componenets/UserList';
 import Loader from '../componenets/Loader';
 import RepoList from '../componenets/RepoList';
@@ -26,6 +25,7 @@ function ErrorFallback() {
 const App: React.FC = (): JSX.Element => {
   const [searchVal, setSearchVal] = useState('');
   const [isUserSelected, setIsUserSelected] = useState(true);
+
   const dispatch = useDispatch();
 
   const response = useSelector(getResponse);
@@ -33,7 +33,6 @@ const App: React.FC = (): JSX.Element => {
   const loading = useSelector(getUsersPending);
 
   const getUsersList = () => {
-    // fetchData();
     dispatch(fetchProducts(searchVal, isUserSelected));
   }
 
@@ -46,14 +45,13 @@ const App: React.FC = (): JSX.Element => {
 
   }
 
-
   const onSearchTypeChanged = (type: string) => {
     type === "user" ? setIsUserSelected(true) : setIsUserSelected(false);
   }
 
   const Wrapper = styled.section`
-  padding: 4em;
-`;
+    padding: 4em;
+  `;
 
   let responseDom;
   if (loading) {
@@ -63,7 +61,6 @@ const App: React.FC = (): JSX.Element => {
   } else if (usersErrorMsg) {
     responseDom = <div >Error : ${usersErrorMsg} </div>
   }
-
 
   return (
     <Wrapper>
