@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 function SearchType(props: { onSearchTypeChanged: (arg0: any) => void; }) {
 
-    const [type, setType] = useState('user');
+    const [type, setType] = useState('repo');
 
     const handleChange = (event: { target: { value: any; }; }) => {
         setType(event?.target?.value);

@@ -1,23 +1,24 @@
-import { FETCH_USERS_PENDING, FETCH_USERS_SUCCESS, FETCH_USERS_ERROR } from './../types/types';
+import { FETCH_DATA_PENDING, FETCH_DATA_SUCCESS, FETCH_DATA_ERROR } from './../types/types';
 import { APP_URL, USR_URL, REPO_URL } from './../../constants/constant'
 import { IUserRes } from '../../models/User';
+import { IRepoRes } from '../../models/repo';
 
 function fetchUsersPending() {
     return {
-        type: FETCH_USERS_PENDING
+        type: FETCH_DATA_PENDING
     }
 }
 
 function fetchUsersSuccess(Users: any) {
     return {
-        type: FETCH_USERS_SUCCESS,
+        type: FETCH_DATA_SUCCESS,
         payload: Users
     }
 }
 
 function fetchUsersError(error: any) {
     return {
-        type: FETCH_USERS_ERROR,
+        type: FETCH_DATA_ERROR,
         error
     }
 }
@@ -28,7 +29,7 @@ function fetchProducts(searchVal: string, isUserSelected: boolean) {
         const urlChunk = isUserSelected ? USR_URL : REPO_URL;
         try {
             const res = await fetch(`${APP_URL}${urlChunk}${searchVal}`);
-            const resJson: IUserRes = await res.json();
+            const resJson: (IUserRes | IRepoRes) = await res.json();
             if (resJson.message) { //as message is part of error response
                 throw (resJson.message);
             }

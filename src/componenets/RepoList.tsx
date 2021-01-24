@@ -1,10 +1,19 @@
 import React from 'react'
+import { IRepoRes } from '../models/repo'
+import Repo from './Repo'
 
-function RepoList() {
+function RepoList(props: { repos: IRepoRes }) {
     return (
-        <div>
+        <>
+            <div className="flexContainer parent" >
+                {
+                    props?.repos?.items?.map(function (repo: any) {
 
-        </div>
+                        return <Repo repo={repo}></Repo>
+                    })
+                }
+            </div>
+        </>
     )
 }
 

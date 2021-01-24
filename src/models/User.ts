@@ -22,7 +22,7 @@ export interface IUser {
 
 export interface IUserRes {
     total_count?: number;
-    incomplete_results: boolean;
+    incomplete_results?: boolean;
     items?: IUser[];
     message?: string;
 }

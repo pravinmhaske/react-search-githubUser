@@ -24,9 +24,7 @@ function SearchInput(props: ISearchInputProps) {
         }
     }
     return (
-        <div>
-            <input value={inputText} style={{ width: '95%' }} placeholder="Start typing to search..." onChange={onInputChange} />
-        </div>
+        <input value={inputText} style={{ width: '95%' }} placeholder="Start typing to search..." onChange={onInputChange} />
     )
 }
 

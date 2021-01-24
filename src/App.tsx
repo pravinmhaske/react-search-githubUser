@@ -4,7 +4,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import fetchProducts from './redux/actions/action';
-import { getUsers, getUsersError, getUsersPending } from './redux/reducers/user.reducer';
+import { getResponse, getUsersError, getUsersPending } from './redux/reducers/user.reducer';
 import SearchInput from './componenets/SearchInput';
 import SearchType from './componenets/SearchType';
 import styled from 'styled-components';
@@ -13,6 +13,7 @@ import ErrorBoundary from './componenets/ErrorBoundary';
 import User from './componenets/User';
 import UserList from './componenets/UserList';
 import Loader from './componenets/Loader';
+import RepoList from './componenets/RepoList';
 function ErrorFallback() {
   return (
     <div role="alert">
@@ -22,13 +23,13 @@ function ErrorFallback() {
 }
 
 const App: React.FC = (): JSX.Element => {
-  const [searchVal, setSearchVal] = useState('');
+  const [searchVal, setSearchVal] = useState('pravin');
   const [isUserSelected, setIsUserSelected] = useState(true);
 
   // const [flushInputValue, setFlushInputValue] = useState(false)
   const dispatch = useDispatch();
 
-  const users = useSelector(getUsers);
+  const response = useSelector(getResponse);
   const usersErrorMsg = useSelector(getUsersError);
   const loading = useSelector(getUsersPending);
 
@@ -44,10 +45,10 @@ const App: React.FC = (): JSX.Element => {
 
   const onSearchValChanged = (val: any) => {
 
-    setSearchVal(val)
+    // setSearchVal(val)
     if (val && val.length > 2) {
       console.log("-----searchVal====", searchVal, " ooooo val ", val);
-      // getUsersList()
+      getUsersList()
     }
 
   }
@@ -61,13 +62,13 @@ const App: React.FC = (): JSX.Element => {
   padding: 4em;
 `;
 
-  let usersRepoDom;
+  let responseDom;
   if (loading) {
-    usersRepoDom = <Loader></Loader>
-  } else if (users) {
-    usersRepoDom = isUserSelected ? <UserList users={users} /> : <> repo ayega yaha </>;
-  } else {
-    usersRepoDom = <div >Error : ${usersErrorMsg} </div>
+    responseDom = <Loader></Loader>
+  } else if (response) {
+    responseDom = isUserSelected ? <UserList users={response} /> : <> <RepoList repos={response}></RepoList></>;
+  } else if (usersErrorMsg) {
+    responseDom = <div >Error : ${usersErrorMsg} </div>
   }
 
 
@@ -96,7 +97,7 @@ const App: React.FC = (): JSX.Element => {
         </div>
       </div>
       {/* </div> */}
-      {usersRepoDom}
+      {responseDom}
       {/* </ErrorBoundary> */}
     </Wrapper>
   );

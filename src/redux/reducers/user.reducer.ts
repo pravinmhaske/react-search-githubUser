@@ -1,4 +1,4 @@
-import { FETCH_USERS_PENDING, FETCH_USERS_SUCCESS, FETCH_USERS_ERROR } from '../types/types';
+import { FETCH_DATA_PENDING, FETCH_DATA_SUCCESS, FETCH_DATA_ERROR } from '../types/types';
 
 const initialState = {
     pending: false,
@@ -8,18 +8,18 @@ const initialState = {
 
 export function usersReducer(state = initialState, action: { type: any; payload: any; error: any; }) {
     switch (action.type) {
-        case FETCH_USERS_PENDING:
+        case FETCH_DATA_PENDING:
             return {
                 ...state,
                 pending: true
             }
-        case FETCH_USERS_SUCCESS:
+        case FETCH_DATA_SUCCESS:
             return {
                 ...state,
                 pending: false,
-                users: action.payload
+                response: action.payload
             }
-        case FETCH_USERS_ERROR:
+        case FETCH_DATA_ERROR:
             return {
                 ...state,
                 pending: false,
@@ -30,6 +30,6 @@ export function usersReducer(state = initialState, action: { type: any; payload:
     }
 }
 
-export const getUsers = (state: { user: { users: any; }; }) => state.user.users;
+export const getResponse = (state: { user: { response: any; }; }) => state.user.response;
 export const getUsersPending = (state: { user: { pending: any; }; }) => state.user.pending;
 export const getUsersError = (state: { user: { error: any; }; }) => state.user.error;
