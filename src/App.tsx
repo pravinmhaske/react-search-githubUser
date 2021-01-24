@@ -4,7 +4,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import fetchProducts from './redux/actions/action';
-import { getUsers, getUsersError } from './redux/reducers/user.reducer';
+import { getUsers, getUsersError, getUsersPending } from './redux/reducers/user.reducer';
 import SearchInput from './componenets/SearchInput';
 import SearchType from './componenets/SearchType';
 import styled from 'styled-components';
@@ -12,6 +12,7 @@ import './App.css';
 import ErrorBoundary from './componenets/ErrorBoundary';
 import User from './componenets/User';
 import UserList from './componenets/UserList';
+import Loader from './componenets/Loader';
 function ErrorFallback() {
   return (
     <div role="alert">
@@ -29,6 +30,7 @@ function App() {
 
   const users = useSelector(getUsers);
   const usersErrorMsg = useSelector(getUsersError);
+  const loading = useSelector(getUsersPending);
 
   // const fetchData = useCallback(
   //   () => dispatch(fetchProducts(searchVal, isUserSelected)),
@@ -60,6 +62,15 @@ function App() {
   padding: 4em;
 `;
 
+  let dom;
+  if (loading) {
+    dom = <Loader></Loader>
+  } else if (users) {
+    dom = isUserSelected ? <UserList users={users} /> : <> repo ayega yaha </>;
+  } else {
+    dom = <div >Error : ${usersErrorMsg} </div>
+  }
+
 
   return (
     <Wrapper>
@@ -86,15 +97,7 @@ function App() {
         </div>
       </div>
 
-      { isUserSelected &&
-        <> {usersErrorMsg && <div >Error : ${usersErrorMsg} </div>}
-          {!usersErrorMsg && <UserList users={users} />} </>
-      }
-
-      { !isUserSelected &&
-        <> repo ayega yaha </>
-      }
-
+      {dom}
       {/* </ErrorBoundary> */}
     </Wrapper>
   );

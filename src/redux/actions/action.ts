@@ -33,7 +33,7 @@ function fetchProducts(searchVal: string, isUserSelected: boolean) {
                 throw (resJson.message);
             }
             dispatch(fetchUsersSuccess(resJson));
-            return resJson;
+            // return resJson;
 
         } catch (error) {
             dispatch(fetchUsersError(error));
