@@ -1,6 +1,6 @@
 import { FETCH_USERS_PENDING, FETCH_USERS_SUCCESS, FETCH_USERS_ERROR } from './../types/types';
 import { APP_URL, USR_URL, REPO_URL } from './../../constants/constant'
-import useFetch from '../../hooks/useFetch';
+import { IUserRes } from '../../models/User';
 
 function fetchUsersPending() {
     return {
@@ -28,12 +28,11 @@ function fetchProducts(searchVal: string, isUserSelected: boolean) {
         const urlChunk = isUserSelected ? USR_URL : REPO_URL;
         try {
             const res = await fetch(`${APP_URL}${urlChunk}${searchVal}`);
-            const resJson = await res.json();
+            const resJson: IUserRes = await res.json();
             if (resJson.message) { //as message is part of error response
                 throw (resJson.message);
             }
             dispatch(fetchUsersSuccess(resJson));
-            // return resJson;
 
         } catch (error) {
             dispatch(fetchUsersError(error));

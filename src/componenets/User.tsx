@@ -1,8 +1,8 @@
 import React from 'react'
+import { IUser } from '../models/User'
 
-function User(props: { user: { avatar_url: string | undefined; login: React.ReactNode; id: React.ReactNode } }) {
+function User(props: { user: IUser }) {
     return (
-        // <div>
         <div className="card child">
             <img className="image" src={props?.user?.avatar_url} alt="Avatar" />
             <div className="container">
@@ -10,7 +10,6 @@ function User(props: { user: { avatar_url: string | undefined; login: React.Reac
                 <p>{props?.user?.id}</p>
             </div>
         </div>
-        // </div>
     )
 }
 

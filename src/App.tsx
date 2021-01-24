@@ -8,7 +8,7 @@ import { getUsers, getUsersError, getUsersPending } from './redux/reducers/user.
 import SearchInput from './componenets/SearchInput';
 import SearchType from './componenets/SearchType';
 import styled from 'styled-components';
-import './App.css';
+import './App.scss';
 import ErrorBoundary from './componenets/ErrorBoundary';
 import User from './componenets/User';
 import UserList from './componenets/UserList';
@@ -21,8 +21,8 @@ function ErrorFallback() {
   )
 }
 
-function App() {
-  const [searchVal, setSearchVal] = useState('pravin');
+const App: React.FC = (): JSX.Element => {
+  const [searchVal, setSearchVal] = useState('');
   const [isUserSelected, setIsUserSelected] = useState(true);
 
   // const [flushInputValue, setFlushInputValue] = useState(false)
@@ -43,12 +43,11 @@ function App() {
   }
 
   const onSearchValChanged = (val: any) => {
-    // setSearchVal(val);
-    // setFlushInputValue(false);
-    // setSearchVal(val)
+
+    setSearchVal(val)
     if (val && val.length > 2) {
       console.log("-----searchVal====", searchVal, " ooooo val ", val);
-      getUsersList()
+      // getUsersList()
     }
 
   }
@@ -62,13 +61,13 @@ function App() {
   padding: 4em;
 `;
 
-  let dom;
+  let usersRepoDom;
   if (loading) {
-    dom = <Loader></Loader>
+    usersRepoDom = <Loader></Loader>
   } else if (users) {
-    dom = isUserSelected ? <UserList users={users} /> : <> repo ayega yaha </>;
+    usersRepoDom = isUserSelected ? <UserList users={users} /> : <> repo ayega yaha </>;
   } else {
-    dom = <div >Error : ${usersErrorMsg} </div>
+    usersRepoDom = <div >Error : ${usersErrorMsg} </div>
   }
 
 
@@ -76,8 +75,8 @@ function App() {
     <Wrapper>
       {/* <ErrorBoundary 
         FallbackComponent={ErrorFallback} > */}
-
-      <div className="flexContainer">
+      {/* <div className={()}> */}
+      <div className={searchVal === '' ? 'alignCenter flexContainer' : 'flexContainer'}>
 
         <div style={{ padding: '.8%' }}>
           <img style={{ height: 70, width: 70, borderRadius: '50%' }} className="image" src="https://www.washingtonpost.com/resizer/9YWv-qOa9uW7CQZ9UGiW23eTZzU=/1484x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/BTCNJJN2Y43KPHPXPQWPASXRKM.jpg" alt="Avatar" />
@@ -87,7 +86,7 @@ function App() {
           <span>Search Users or repositories below</span>
         </div>
       </div>
-      <div className="flexContainer">
+      <div className={searchVal === '' ? 'alignCenter flexContainer' : 'flexContainer'}>
         <div style={{ width: '25%' }}>
           {searchVal}
           <SearchInput onSearchValChanged={onSearchValChanged} />
@@ -96,8 +95,8 @@ function App() {
           <SearchType onSearchTypeChanged={onSearchTypeChanged} />
         </div>
       </div>
-
-      {dom}
+      {/* </div> */}
+      {usersRepoDom}
       {/* </ErrorBoundary> */}
     </Wrapper>
   );

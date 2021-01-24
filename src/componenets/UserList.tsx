@@ -1,7 +1,8 @@
 import React from 'react'
+import { IUserRes } from '../models/User'
 import User from './User'
 
-function UserList(props: { users: any }) {
+function UserList(props: { users: IUserRes }) {
 
 
 
