@@ -81,7 +81,7 @@ const App: React.FC = (): JSX.Element => {
       </div>
       <div className={searchVal === '' ? 'alignCenter flexContainer' : 'flexContainer'}>
         <div style={{ width: '25%' }}>
-          {searchVal}
+          {/* {searchVal} */}
           <SearchInput onSearchValChanged={onSearchValChanged} />
         </div>
         <div>
