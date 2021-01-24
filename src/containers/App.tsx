@@ -3,17 +3,18 @@
 
 import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import fetchProducts from './redux/actions/action';
-import { getResponse, getUsersError, getUsersPending } from './redux/reducers/user.reducer';
-import SearchInput from './componenets/SearchInput';
-import SearchType from './componenets/SearchType';
+import fetchProducts from '../redux/actions/action';
+import { getResponse, getUsersError, getUsersPending } from '../redux/reducers/user.reducer';
+import SearchInput from '../componenets/SearchInput';
+import SearchType from '../componenets/SearchType';
 import styled from 'styled-components';
 import './App.scss';
-import ErrorBoundary from './componenets/ErrorBoundary';
-import User from './componenets/User';
-import UserList from './componenets/UserList';
-import Loader from './componenets/Loader';
-import RepoList from './componenets/RepoList';
+import ErrorBoundary from '../componenets/ErrorBoundary';
+import User from '../componenets/User';
+import UserList from '../componenets/UserList';
+import Loader from '../componenets/Loader';
+import RepoList from '../componenets/RepoList';
+
 function ErrorFallback() {
   return (
     <div role="alert">
@@ -23,20 +24,13 @@ function ErrorFallback() {
 }
 
 const App: React.FC = (): JSX.Element => {
-  const [searchVal, setSearchVal] = useState('pravin');
+  const [searchVal, setSearchVal] = useState('');
   const [isUserSelected, setIsUserSelected] = useState(true);
-
-  // const [flushInputValue, setFlushInputValue] = useState(false)
   const dispatch = useDispatch();
 
   const response = useSelector(getResponse);
   const usersErrorMsg = useSelector(getUsersError);
   const loading = useSelector(getUsersPending);
-
-  // const fetchData = useCallback(
-  //   () => dispatch(fetchProducts(searchVal, isUserSelected)),
-  //   []
-  // );
 
   const getUsersList = () => {
     // fetchData();
@@ -44,12 +38,11 @@ const App: React.FC = (): JSX.Element => {
   }
 
   const onSearchValChanged = (val: any) => {
-
-    // setSearchVal(val)
-    if (val && val.length > 2) {
-      console.log("-----searchVal====", searchVal, " ooooo val ", val);
-      getUsersList()
-    }
+    setSearchVal(val)
+    // if (val && val.length > 2) {
+    console.log("-----searchVal====", searchVal, " ooooo val ", val);
+    getUsersList()
+    // }
 
   }
 
@@ -76,7 +69,6 @@ const App: React.FC = (): JSX.Element => {
     <Wrapper>
       {/* <ErrorBoundary 
         FallbackComponent={ErrorFallback} > */}
-      {/* <div className={()}> */}
       <div className={searchVal === '' ? 'alignCenter flexContainer' : 'flexContainer'}>
 
         <div style={{ padding: '.8%' }}>
@@ -96,7 +88,6 @@ const App: React.FC = (): JSX.Element => {
           <SearchType onSearchTypeChanged={onSearchTypeChanged} />
         </div>
       </div>
-      {/* </div> */}
       {responseDom}
       {/* </ErrorBoundary> */}
     </Wrapper>

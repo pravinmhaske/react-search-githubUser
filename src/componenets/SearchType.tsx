@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 
 function SearchType(props: { onSearchTypeChanged: (arg0: any) => void; }) {
 
-    const [type, setType] = useState('repo');
+    const [type, setType] = useState('user');
 
     const handleChange = (event: { target: { value: any; }; }) => {
         setType(event?.target?.value);
@@ -21,5 +21,5 @@ function SearchType(props: { onSearchTypeChanged: (arg0: any) => void; }) {
     )
 }
 
-export default SearchType
+export default memo(SearchType)
 

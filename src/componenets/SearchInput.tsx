@@ -18,7 +18,7 @@ function SearchInput(props: ISearchInputProps) {
 
         setInputText(event?.target?.value);
         console.log("event.target.value ", event.target.value);
-        if (event?.target?.value.length > 1) {
+        if (event?.target?.value.length > 2) {
             props.onSearchValChanged(event?.target?.value);
             // delayedQuery(event?.target?.value);
         }
